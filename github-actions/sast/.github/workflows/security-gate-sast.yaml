@@ -1,0 +1,14 @@
+name: SAST Security Gate Didatico
+
+on: push
+
+jobs:
+  scan_sast:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o código do repositório
+        uses: actions/checkout@v4
+      - name: Instalar o Bandit
+        run: pip install bandit
+      - name: Analisar código-fonte
+        run: bandit -r . -lll
